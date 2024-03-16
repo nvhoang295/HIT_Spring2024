@@ -1,0 +1,8 @@
+package com.viethoang;
+
+public class Person {
+	private Outfit;
+	private HairStyle;
+	
+	
+}

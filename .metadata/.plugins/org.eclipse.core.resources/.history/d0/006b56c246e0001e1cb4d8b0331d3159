@@ -1,0 +1,6 @@
+package com.viethoang;
+
+public class Constants {
+	public static final String PERSON_CLASSNAME = Person.class.getSimpleName();
+	public static final String TRANG_PHUC_1_CLASSNAME = TrangPhuc1.class.getSimpleName();
+}

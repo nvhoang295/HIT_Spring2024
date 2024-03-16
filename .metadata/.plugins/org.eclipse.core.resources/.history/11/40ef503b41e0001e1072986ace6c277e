@@ -1,0 +1,10 @@
+package com.viethoang;
+
+public class TrangPhuc implements Outfit {
+
+	@Override
+	public void getOutfitName() {
+		System.out.println("Trang phuc");
+	}
+
+}

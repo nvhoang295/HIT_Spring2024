@@ -1,0 +1,10 @@
+package com.viethoang;
+
+public class Kimono implements Outfit {
+
+	@Override
+	public void getOutfitName() {
+		System.out.println("Wearing kimono");
+	}
+	
+}

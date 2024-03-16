@@ -1,0 +1,15 @@
+package com.viethoang;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+public class Person {
+	@Autowired
+	@Qualifier(value = "Naked")
+	private Outfit outfit;
+	
+	@Autowired
+	private HairStyle hairStyle;
+	
+	
+}

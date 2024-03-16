@@ -1,0 +1,13 @@
+package com.viethoang;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class TrangPhuc implements Outfit {
+
+	@Override
+	public void getOutfitName() {
+		System.out.println("Trang phuc");
+	}
+
+}

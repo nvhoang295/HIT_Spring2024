@@ -1,0 +1,5 @@
+package com.viethoang;
+
+public class Vest implements Outfit {
+
+}

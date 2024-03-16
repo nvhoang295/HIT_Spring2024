@@ -1,0 +1,14 @@
+package com.viethoang;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Naked implements Outfit {
+
+	@Override
+	public void getOutfitName() {
+		System.out.println("Wearning nothing!!!! :v");
+	}
+
+}

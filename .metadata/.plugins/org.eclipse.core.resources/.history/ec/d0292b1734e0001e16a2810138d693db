@@ -1,0 +1,10 @@
+package com.viethoang;
+
+public class Undercut implements HairStyle {
+
+	@Override
+	public void getHairStyleName() {
+		System.out.println("undercut");
+	}
+
+}

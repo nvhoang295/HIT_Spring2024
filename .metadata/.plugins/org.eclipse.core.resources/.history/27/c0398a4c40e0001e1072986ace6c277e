@@ -1,0 +1,15 @@
+package com.viethoang;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
+public class Monican implements HairStyle {
+
+	@Override
+	public void getHairStyleName() {
+		System.out.println("Monican");
+	}
+
+}

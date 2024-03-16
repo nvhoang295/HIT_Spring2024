@@ -1,0 +1,5 @@
+attrNamesToIgnore=
+eclipse.preferences.version=1
+ignoreAttrNames=false
+inlineElements=b,span
+lineWidth=80

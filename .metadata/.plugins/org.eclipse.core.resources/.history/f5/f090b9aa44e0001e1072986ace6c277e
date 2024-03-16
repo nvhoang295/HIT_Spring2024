@@ -1,0 +1,10 @@
+package com.viethoang;
+
+public class TrangPhuc2 implements Outfit {
+
+	@Override
+	public void wear() {
+		System.out.println("Đang mặc trang phục 2");
+	}
+
+}

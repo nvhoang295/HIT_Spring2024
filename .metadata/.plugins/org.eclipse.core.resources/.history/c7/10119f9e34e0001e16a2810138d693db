@@ -1,0 +1,15 @@
+package com.viethoang;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HomeworkWeek01Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HomeworkWeek01Application.class, args);
+		
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+package com.viethoang;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Person {
+	private Outfit outfit;
+	private HairStyle hairStyle;
+	
+	public Person() {
+		
+	}
+}

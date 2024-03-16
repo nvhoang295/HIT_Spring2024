@@ -1,0 +1,10 @@
+package com.viethoang;
+
+public class Naked implements Outfit {
+
+	@Override
+	public void getOutfitName() {
+		System.out.println("Wearning nothing!!!!");
+	}
+
+}
