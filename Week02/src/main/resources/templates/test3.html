@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:each="item : ${listUser}">
+		<p th:text="*{item.getName()}">
+		<p th:text="*{item.getAge()}">
+	</div>
+</body>
+</html>

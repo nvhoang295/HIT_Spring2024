@@ -1,5 +1,0 @@
-package com.viethoang;
-
-public class Constants {
-	public static final String PERSON_CLASSNAME = Person.class.getSimpleName();
-}

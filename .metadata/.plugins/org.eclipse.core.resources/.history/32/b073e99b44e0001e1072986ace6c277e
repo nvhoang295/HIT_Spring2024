@@ -1,9 +1,0 @@
-package com.viethoang;
-
-public class Person {
-	private Outfit outfit;
-	
-	public showPersonInfor() {
-		
-	}
-}
