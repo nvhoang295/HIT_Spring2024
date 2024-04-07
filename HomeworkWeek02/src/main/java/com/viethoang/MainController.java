@@ -31,10 +31,10 @@ public class MainController {
 		if (username.equals("viethoang") && password.equals("1234")) {
 			// nó return về thằng page chứ không return về get mapping method viết ở dưới nên phải add attribute vào
 			model.addAttribute("users", users);
-			return "home";
+			return "redirect:/home";
 		}
 		model.addAttribute("message", "Đăng nhập thất bại!");
-		return "redirect:login";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/home")
