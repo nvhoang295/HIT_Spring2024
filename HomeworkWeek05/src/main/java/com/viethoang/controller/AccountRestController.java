@@ -1,13 +1,7 @@
 package com.viethoang.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.viethoang.dto.CreateAccountRequestDTO;
 import com.viethoang.service.AccountService;
@@ -20,29 +14,32 @@ import lombok.RequiredArgsConstructor;
 public class AccountRestController {
 	private final AccountService service;
 	
-	@GetMapping("/accounts/{username}")
-	public ResponseEntity<?> getAccountByUsername(
-			@PathVariable(name = "username") String username
+	@GetMapping("/accounts/{id}")
+	public ResponseEntity<?> getOne(
+			@PathVariable(name = "id") Integer id
 	) {
-		return ResponseEntity.ok(service.getAccountByUsername(username));
+		return ResponseEntity.ok(service.getOne(id));
 	}
 	
 	@GetMapping("/accounts")
-	public ResponseEntity<?> getAllAccounts() {
-		return ResponseEntity.ok(service.getAllAccounts());
+	public ResponseEntity<?> getList(
+			@RequestParam(name = "keyword", required = false) String keyword
+	) {
+		return keyword == null ? ResponseEntity.ok(service.getList()) : ResponseEntity.ok(service.searchList(keyword));
 	}
 	
 	@PostMapping("/accounts")
-	public ResponseEntity<?> createAccount(
+	public ResponseEntity<?> addOne(
 			@RequestBody CreateAccountRequestDTO request
 	) {
-		return ResponseEntity.created(null).body(service.createAccount(request));
+		return ResponseEntity.created(null).body(service.addOne(request));
 	}
 	
-	@DeleteMapping("/accounts/{username}")
-	public ResponseEntity<?> deleteAccountByUsername(
-			@PathVariable(name = "username") String username
+	@DeleteMapping("/accounts/{id}")
+	public ResponseEntity<?> deleteOne(
+			@PathVariable(name = "id") Integer id
 	) {
-		return ResponseEntity.ok(service.deleteAccountByUsername(username));
+		return ResponseEntity.ok(service.deleteOne(id));
 	}
+
 }

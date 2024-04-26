@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.viethoang.repository.AccountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.viethoang.dto.CommonResponseDTO;
@@ -17,22 +19,13 @@ import com.viethoang.exception.NotFoundException;
 import jakarta.annotation.PostConstruct;
 
 @Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
-	
-	private List<Account> accounts = new ArrayList<>();
-	
-	@PostConstruct
-	public void initListAccount() {
-		for (int i = 1; i <= 10; i++) {
-			accounts.add(Account.builder().username("user" + i).password("123").build());
-		}
-	}
-	
+	private final AccountRepository repository;
+
 	@Override
-	public CommonResponseDTO<?> getAccountByUsername(String username) {
-		Optional<Account> found = accounts.parallelStream()
-				.filter(item -> item.getUsername().equals(username))
-				.findFirst();
+	public CommonResponseDTO<?> getOne(Integer id) {
+		Optional<Account> found = repository.findById(id);
 		
 		if (found.isEmpty()) throw new NotFoundException("Khong tim thay username nay!");
 		
@@ -44,38 +37,41 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public GetItemsResponseDTO<Account> getAllAccounts() {
+	public GetItemsResponseDTO<Account> getList() {
 		return GetItemsResponseDTO.<Account>builder()
-				.items(accounts)
+				.items(repository.findAll())
 				.build();
 	}
 
 	@Override
-	public CommonResponseDTO<?> createAccount(CreateAccountRequestDTO request) {
-		Optional<Account> found = accounts.parallelStream()
-				.filter(item -> item.getUsername().equals(request.username()))
-				.findFirst();
-		
-		if (found.isPresent()) 
-			throw new DuplicateUsernameException("Username nay da duoc su dung, mat khau cua username nay la: " + found.get().getPassword());
+	public GetItemsResponseDTO<Account> searchList(String keyword) {
+		return GetItemsResponseDTO.<Account>builder()
+								  .items(repository.searchAccounts(keyword))
+								  .build();
+	}
+
+	@Override
+	public CommonResponseDTO<?> addOne(CreateAccountRequestDTO request) {
+		List<Account> foundList = repository.searchAccounts(request.username());
+
+		if (!foundList.isEmpty())
+			throw new DuplicateUsernameException("Username nay da duoc su dung, mat khau cua username nay la: ");
 		
 		if (!request.password().equals(request.confirmPassword()))
 			throw new MismatchedPasswordException("Mat khau xac nhan khong khop!");
-		
-		accounts.add(Account.builder().username(request.username()).password(request.password()).build());
+
+		repository.save(Account.builder().password(request.username()).password(request.password()).build());
 		
 		return CommonResponseDTO.builder().result(true).message("Them thanh cong!").build();
 	}
 
 	@Override
-	public CommonResponseDTO<?> deleteAccountByUsername(String username) {
-		Optional<Account> found = accounts.parallelStream()
-				.filter(item -> item.getUsername().equals(username))
-				.findFirst();
+	public CommonResponseDTO<?> deleteOne(Integer id) {
+		Optional<Account> found = repository.findById(id);
 		
 		if (found.isEmpty()) throw new NotFoundException("Khong tim thay username nay!");
 		
-		accounts.remove(found.get());
+		repository.delete(found.get());
 		
 		return CommonResponseDTO.builder()
 				.result(true).message("Xoa thanh cong!")
