@@ -78,4 +78,11 @@ public class AccountServiceImpl implements AccountService {
 				.build();
 	}
 
+	@Override
+	public CommonResponseDTO<?> updateOne(Integer id, String password) {
+		Optional<Account> found = repository.findById(id);
+		found.get().setPassword(password);
+		return CommonResponseDTO.builder().message("OK").item(repository.save(found.get())).build();
+	}
+
 }

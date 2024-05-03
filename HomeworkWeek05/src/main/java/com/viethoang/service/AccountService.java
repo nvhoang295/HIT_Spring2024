@@ -11,5 +11,6 @@ public interface AccountService {
 	GetItemsResponseDTO<Account> searchList(String keyword);
 	CommonResponseDTO<?> addOne(CreateAccountRequestDTO request);
 	CommonResponseDTO<?> deleteOne(Integer id);
+	CommonResponseDTO<?> updateOne(Integer id, String password);
 	
 }

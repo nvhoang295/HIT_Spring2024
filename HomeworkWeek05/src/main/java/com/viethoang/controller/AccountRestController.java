@@ -42,4 +42,13 @@ public class AccountRestController {
 		return ResponseEntity.ok(service.deleteOne(id));
 	}
 
+	@PutMapping("/account/{id}")
+	public ResponseEntity<?> updateOne(
+			@PathVariable Integer id,
+			@RequestParam String password
+	) {
+		System.out.println("Im here");
+		return ResponseEntity.ok(service.updateOne(id, password));
+	}
+
 }
